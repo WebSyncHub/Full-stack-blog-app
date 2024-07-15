@@ -48,5 +48,5 @@ mongoose
 
 // Server listening
 app.listen(port, () => {
-  console.log("http://localhost:4000");
+  console.log("http://localhost:3000");
 });
