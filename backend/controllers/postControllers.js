@@ -1,9 +1,27 @@
+const mongoose = require('mongoose');
+const Blogs = require('../blog_schema/blogSchema')
+
+
 const getAllBlogs = async (req, res) => {
-  console.log("Blog posts logic here!")
+  try {
+    const blogs = await Blogs.find()
+    res.json(blogs)
+  } catch (error) {
+    res.status(500).json({error: 'Failed to fetch blogs'})
+  }
 }
 
 const getBlogById = async (req, res) => {
-  console.log("Blog posts logic here!")   
+  try {
+    const blog = Blogs.findById(req.params.id);
+    res.json(blog)
+
+    if(!blog) {
+      return res.status(404).json({error: 'Blog not found'})
+    }
+  } catch (error) {
+    res.status(500).json({error: 'Failed to fetch blogs'})
+  } 
 }
 
 const createBlog = async (req, res) => {
