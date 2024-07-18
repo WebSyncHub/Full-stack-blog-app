@@ -5,7 +5,7 @@ const Blogs = require('../blog_schema/blogSchema')
 const getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blogs.find()
-    res.json(blogs)
+    res.status(200).json(blogs)
   } catch (error) {
     res.status(500).json({error: 'Failed to fetch blogs'})
   }
