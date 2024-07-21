@@ -13,7 +13,7 @@ const getAllBlogs = async (req, res) => {
 
 const getBlogById = async (req, res) => {
   try {
-    const blog = Blogs.findById(req.params.id);
+    const blog = await Blogs.findById(req.params.id);
     res.json(blog)
 
     if(!blog) {
@@ -25,11 +25,29 @@ const getBlogById = async (req, res) => {
 }
 
 const createBlog = async (req, res) => {
-  console.log("Blog posts logic here!") 
+  const { title, desc, image } = req.body;
+  
+  try {
+     const blog = await Blogs.create({ title, desc, image });
+     res.status(200).json(blog);
+  } catch (error) {
+     console.error(error);
+     res.status(400).json({ error: "Failed to create blog" });
+  }
 }
 
+
 const updateBlog = async (req, res) => {
-  console.log("Blog posts logic here!") 
+  try {
+    const { title, desc, image } = req.body;
+    const blog =  await Blogs.findByIdAndUpdate(req.params.id, {title, desc, image}, { new: true })
+    if (!blog) {
+      res.status(404).json({error: 'Blog not found'})
+    }
+    res.status(200).json(blog)
+  } catch (error) {
+    res.status(500).json({error: 'Failed to fetch the blog'})
+  }
 }
 
 const deleteBlog = async (req, res) => {
