@@ -17,9 +17,13 @@ const port = process.env.PORT || 3000;
 const DBConnectionString = process.env.MongoDB_URI;
 
 
+// simple middleware
+app.use(express.json());
 
 // Middleware to import routes
 app.use("/api/blog-post", blogPostController);
+
+
 
 // For Cors
 app.use(
