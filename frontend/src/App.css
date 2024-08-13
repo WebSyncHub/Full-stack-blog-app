@@ -1,7 +1,69 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+#root {
+  max-width: 1680px;
+  margin: 0 auto;
+  font-family: var(--poppins);
+}
+
+#root button {
+  font-family: var(--poppins);
+  cursor: pointer;
+}
+
+/* Navbar Styles */
+.navbar__container {
+  padding: 1rem;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__items ul {
+  list-style: none;
+  margin-left: 2rem;
+}
+
+.nav__items ul li {
+  display: inline-block;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.nav__items ul li:hover {
+  color: var(--gray);
+}
+
+.navbar .btns {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .btns .subs__btn {
+  border: none;
+  background-color: var(--peach-1);
+  color: white;
+  font-weight: bold;
+  padding: .8rem 1.4rem;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.btns .theme {
+  padding: .7rem 1.4rem;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+}
