@@ -1,0 +1,79 @@
+.home {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+
+
+Blogi css
+
+.why-blogi-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
+    background-color: #f6f8fa;
+    border-radius: 8px;
+  }
+  
+  .text-section {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .text-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .text-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .author-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .dashboard-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .why-blogi-container {
+      flex-direction: column;
+    }
+  
+    .text-section, .image-section {
+      padding: 10px;
+    }
+  
+    .text-section h2 {
+      font-size: 20px;
+    }
+  
+    .text-section p {
+      font-size: 14px;
+    }
+  }
+  
