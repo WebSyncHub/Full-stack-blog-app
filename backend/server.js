@@ -16,31 +16,28 @@ const blogPostController = require("./routes/blogPostCMS");
 const port = process.env.PORT || 3000;
 const DBConnectionString = process.env.MongoDB_URI;
 
-
-// simple middleware
-app.use(express.json());
-
-// Middleware to import routes
-app.use("/api/blog-post", blogPostController);
-
-
-
-// For Cors
+// For CORS
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173", // Removed the trailing slash here
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-type", "Authorization"],
   })
 );
 
-// main page get request
+// Simple middleware
+app.use(express.json());
+
+// Middleware to import routes
+app.use("/api/blog-post", blogPostController);
+
+// Main page get request
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// mongodb mongoose.connect
+// MongoDB mongoose.connect
 mongoose
   .connect(DBConnectionString)
   .then(() => {
@@ -52,5 +49,5 @@ mongoose
 
 // Server listening
 app.listen(port, () => {
-  console.log("http://localhost:3000");
+  console.log(`Server running at http://localhost:${port}`);
 });

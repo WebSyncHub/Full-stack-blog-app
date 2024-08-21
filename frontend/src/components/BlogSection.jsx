@@ -1,8 +1,33 @@
-import React from 'react'
-import { images } from '../constant'
-import "./blogSection.css"
+import React, { useState, useEffect } from 'react';
+import { images } from '../constant';
+import "./blogSection.css";
 
-const blogSection = () => {
+const BlogSection = () => {
+
+  const [blogs, setBlogs] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const hangleGetBlogs = async () => {
+      try {
+          const fetchBlog = await fetch("http://localhost:3000/api/blog-post", {
+            // credentials: 'include' // Ensure credentials are included in the request
+          });
+          if (!fetchBlog.ok) {
+              throw new Error(`HTTP error! status: ${fetchBlog.status}`);
+          }
+          const response = await fetchBlog.json();
+          console.log(response)
+          setBlogs(response);
+      } catch (error) {
+          setError(error.message);
+          console.error("Error fetching the blog post:", error);
+      }
+    };
+    
+    hangleGetBlogs();
+  }, []); // Added empty dependency array to run effect only once
+
   return (
     <div className='blog__section'>
         <h1>All Blogs</h1>
@@ -13,14 +38,15 @@ const blogSection = () => {
             <button>Design</button>
             <button>All</button>
         </div>
-        <div className="blog__section-cards">
+        {blogs && blogs.map(blog => (
+        <div className="blog__section-cards" key={blog._id}>
             <div className="blog__section-card">
               <div className="card-img">
-                <img src={images.devCard} alt="dev card image" />
+                <img src={blog.image} alt="dev card image" />
               </div>
               <div className="card-info">
-                <h2 className="card-heading">How to handle Errors in react</h2>
-                <p className="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, similique doloremque voluptatibus ratione consequuntur adipisci...</p>
+                <h2 className="card-heading">{blog.title}</h2>
+                <p className="card-description">{blog.desc}</p>
                 <div className="read__info">
                     <span className="publisher">by <b>Umer Khokhar</b></span>
                     <span className="post-time">13min Ago</span>
@@ -28,8 +54,9 @@ const blogSection = () => {
               </div>
             </div>
         </div>
+        ))}
     </div>
-  )
-}
+  );
+};
 
-export default blogSection
+export default BlogSection;
