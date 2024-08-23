@@ -38,9 +38,9 @@ const BlogSection = () => {
             <button>Design</button>
             <button>All</button>
         </div>
+        <div className="blog__section-cards" >
         {blogs && blogs.map(blog => (
-        <div className="blog__section-cards" key={blog._id}>
-            <div className="blog__section-card">
+            <div className="blog__section-card" key={blog._id}>
               <div className="card-img">
                 <img src={blog.image} alt="dev card image" />
               </div>
@@ -53,8 +53,8 @@ const BlogSection = () => {
                 </div>
               </div>
             </div>
-        </div>
         ))}
+        </div>
     </div>
   );
 };

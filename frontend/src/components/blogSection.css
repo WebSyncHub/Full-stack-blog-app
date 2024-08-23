@@ -26,9 +26,17 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     gap: 1rem;
     margin: 1rem;
+}
+
+.blog__card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+
 }
 
 .blog__section-card {
