@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .dashboard .post-area {
@@ -26,45 +27,67 @@
     padding: 2rem;
 }
 
-.post-form .input {
+/* blog post CSS  */
+
+.posts {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: .5rem;
-    margin: 1rem 0;
+    gap: 1.5rem;
+    margin: 1.5rem;
+    max-height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
+    scroll-behavior: smooth;
 }
-.input label {
+
+/* Target the .posts element */
+.posts {
+    scrollbar-width: thin;       /* For Firefox */
+    scrollbar-color: #FFD18E transparent;  /* For Firefox */
+  }
+  
+  /* WebKit browsers (Chrome, Safari, Edge) */
+  .posts::-webkit-scrollbar {
+    width: 3px;                  /* Set the width of the scrollbar */
+  }
+  
+  /* The part of the scrollbar (track) */
+  .posts::-webkit-scrollbar-track {
+    background: transparent;      /* Track background */
+  }
+  
+  /* The draggable scrollbar itself */
+  .posts::-webkit-scrollbar-thumb {
+    background-color: #FFD18E;       /* Colour of the scrollbar */
+    border-radius: 10px;          /* Make it rounded */
+  }
+  
+  /* Hide scrollbar arrows */
+  .posts::-webkit-scrollbar-button {
+    display: none;                /* Hide the up/down or left/right arrows */
+  }
+  
+
+.my-post {
+    border-radius: 4px;
+    background-color: rgb(50, 51, 57);
+    color: white;
+    width: 100%;
+    max-height: 120px;
+    min-height: 120px;
     display: flex;
-    align-items: center;
-    gap: .3rem;
-}
-.input input {
-    padding: .5rem .5rem;
-    outline: none;
-    font-size: 1.1rem;
-    border: none;
-    border: 1px solid rgba(49, 47, 59, 0.206);
+    gap: 1rem;
+    /* justify-content: center; */
+    align-items: flex-start;
 }
 
-.input.desc textarea {
-    outline: none;
-    border: 1px solid rgba(49, 47, 59, 0.206);
-    font-size: 1rem;
-    padding: .5rem;
-    color: rgb(47, 47, 58);
+.my-post img {
+    width: 180px;
+    height: 120px;
+    padding: 10px;
 }
 
-.publish-btn button {
-    padding: .6rem 1rem;
-    border: 1px solid rgba(49, 47, 59, 0.206);
-    background-color: transparent;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
+.my-post .post__info {
+    padding: 10px;
 }
-
-/* .publish-btn button:hover {
-    border: ;
-} */

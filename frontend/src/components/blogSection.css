@@ -24,8 +24,7 @@
 
 .blog__section-cards {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
     margin: 1rem;
@@ -34,6 +33,7 @@
 .blog__section-card {
     width: 400px;
     background-color: #fff;
+    height: 450px;
     box-shadow: 0 0 10px rgba(22, 22, 29, 0.187);
     border-radius: 15px;
     border: 3px solid white;

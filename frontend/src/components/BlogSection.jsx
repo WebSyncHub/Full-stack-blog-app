@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { images } from '../constant';
+import { FetchFromAPI, handleGetBlogs } from '.';
 import "./blogSection.css";
 
 const BlogSection = () => {
@@ -7,25 +8,14 @@ const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
 
+   const hangleBlogs = async () => {
+        handleGetBlogs()
+        .then(data => setBlogs(data))
+        .catch(error => setError("Unable to fetch blogs!"))
+  };
   useEffect(() => {
-    const hangleGetBlogs = async () => {
-      try {
-          const fetchBlog = await fetch("http://localhost:3000/api/blog-post", {
-            // credentials: 'include' // Ensure credentials are included in the request
-          });
-          if (!fetchBlog.ok) {
-              throw new Error(`HTTP error! status: ${fetchBlog.status}`);
-          }
-          const response = await fetchBlog.json();
-          console.log(response)
-          setBlogs(response);
-      } catch (error) {
-          setError(error.message);
-          console.error("Error fetching the blog post:", error);
-      }
-    };
     
-    hangleGetBlogs();
+    hangleBlogs();
   }, []); // Added empty dependency array to run effect only once
 
   return (
@@ -38,9 +28,9 @@ const BlogSection = () => {
             <button>Design</button>
             <button>All</button>
         </div>
+        <div className="blog__section-cards">
         {blogs && blogs.map(blog => (
-        <div className="blog__section-cards" key={blog._id}>
-            <div className="blog__section-card">
+            <div className="blog__section-card" key={blog._id}>
               <div className="card-img">
                 <img src={blog.image} alt="dev card image" />
               </div>
@@ -53,8 +43,8 @@ const BlogSection = () => {
                 </div>
               </div>
             </div>
-        </div>
         ))}
+        </div>
     </div>
   );
 };
