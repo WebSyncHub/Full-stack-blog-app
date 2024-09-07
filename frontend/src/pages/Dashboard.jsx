@@ -1,31 +1,41 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './dashboard.css'
 import { images } from '../constant'
+import { handleGetBlogs, BlogForm } from '../components'
 
 const Dashboard = () => {
+  const [blogs, setBlogs] = useState([])
+
+  let turncateDesc = (description, maxchars = 120) => {
+
+    if (description.length > maxchars) {
+      return description.slice(0, maxchars) + "..."
+    }
+    return description
+  }
+  useEffect(() => {
+    handleGetBlogs()
+    .then(data => setBlogs(data))
+    .catch(error => console.log("Can't able to fetch any blog!"))
+  }, [])
+  
   return (
     <div className='dashboard'>
       <div className="post-area">
-
+        <div className="posts">
+          {blogs && blogs.map(blog => (
+            <div className="my-post" key={blog._id}>
+              <img src={blog.image} alt="blog Image" />
+              <div className="post__info">
+              <h2>{blog.title}</h2>
+              <p>{turncateDesc(blog.desc)} <button>Read more</button></p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="post-form">
-        <form>
-          <div className="title input">
-          <label htmlFor="">Title <img src={images.title} alt="title"  width={20}/>:</label>
-          <input type="text" />
-          </div>
-          <div className="image input">
-          <label htmlFor="">ImageURI <img src={images.imageLogo} alt="image"  width={20}/>:</label>
-          <input type="text" />
-          </div>
-          <div className="desc input">
-          <label htmlFor="">Description <img src={images.description} alt="desc"  width={20}/>:</label>
-          <textarea name="desc" id="desc" rows={10}></textarea>
-          </div>
-        </form>
-        <div className="publish-btn">
-          <button> <img src={images.publish} alt="publish" width={22}/>Publish</button>
-        </div>
+        <BlogForm />
       </div>
     </div>
   )
