@@ -12,6 +12,7 @@ import githubIcon from '../assets/social_icons/github.svg'
 import linkedinIcon from '../assets/social_icons/linkedin.svg'
 import instagramIcon from '../assets/social_icons/instagram.svg'
 import discordIcon from '../assets/social_icons/discord.svg'
+import dltBtn from '../assets/dlt.png'
 
 
 export default {
@@ -28,5 +29,6 @@ export default {
     githubIcon,
     discordIcon,
     linkedinIcon,
-    instagramIcon
+    instagramIcon,
+    dltBtn
 }

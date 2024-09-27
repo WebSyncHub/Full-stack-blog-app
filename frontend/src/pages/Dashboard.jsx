@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './dashboard.css'
 import { images } from '../constant'
-import { handleGetBlogs, BlogForm } from '../components'
+import { handleGetBlogs, BlogForm, BlogDetails } from '../components'
 
 const Dashboard = () => {
   const [blogs, setBlogs] = useState([])
@@ -25,11 +25,7 @@ const Dashboard = () => {
         <div className="posts">
           {blogs && blogs.map(blog => (
             <div className="my-post" key={blog._id}>
-              <img src={blog.image} alt="blog Image" />
-              <div className="post__info">
-              <h2>{blog.title}</h2>
-              <p>{turncateDesc(blog.desc)} <button>Read more</button></p>
-              </div>
+             <BlogDetails title={blog.title} description={blog.desc} image={blog.image} _id={blog._id} dltBtn={images.dltBtn}/>
             </div>
           ))}
         </div>

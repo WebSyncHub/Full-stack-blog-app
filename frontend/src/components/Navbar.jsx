@@ -19,7 +19,7 @@ const Navbar = () => {
         </ul>
         </div>
         <div className="btns">
-            <button className="subs__btn">Dashboard</button>
+            <button className="subs__btn"><a href='/dashboard'>Dashboard</a></button>
             <button className='theme'>light</button>
         </div>
       </nav>
