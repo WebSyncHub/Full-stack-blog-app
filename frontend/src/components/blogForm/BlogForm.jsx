@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { images } from "../../constant";
-import { handlePostBlogs } from "..";
+import { handlePostBlogs, useBlogContext } from "..";
 
 import "./blogform.css";
 
 const BlogForm = () => {
+  const { createBlog } = useBlogContext(); // Import createBlog from context
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
@@ -14,29 +15,23 @@ const BlogForm = () => {
   const handlePost = async (e) => {
     e.preventDefault();
 
-    // Validation check: Ensure that all fields are filled
-    // if (!title || !desc || !image) {
-    //   setError("All fields are required.")
-    //   setSuccessMsg(null)
-    //   return // Stop the function from proceeding
-    // }
-
+    // Validate form input
     let errorMsg =
       !title && !desc && !image
-        ? "Please enter all fields data" // All fields are empty
+        ? "Please enter all fields data"
         : !title && !desc
-        ? "Title and Description are required!" // Title and Description are empty
+        ? "Title and Description are required!"
         : !title && !image
-        ? "Title and Image are required!" // Title and Image are empty
+        ? "Title and Image are required!"
         : !desc && !image
-        ? "Description and Image are required!" // Description and Image are empty
+        ? "Description and Image are required!"
         : !title
-        ? "Title is required!" // Only Title is empty
+        ? "Title is required!"
         : !desc
-        ? "Description is required!" // Only Description is empty
+        ? "Description is required!"
         : !image
-        ? "Image is required!" // Only Image is empty
-        : null; // No error
+        ? "Image is required!"
+        : null;
 
     if (errorMsg) {
       setError(errorMsg);
@@ -48,22 +43,27 @@ const BlogForm = () => {
     setSuccessMsg("Successfully created a new post");
 
     try {
-      // Clear any previous error messages
-      setError(null);
+      const newBlog = { title, desc, image };
 
-      // Call the function to post the blog
-      await handlePostBlogs({ title, desc, image });
+      // Call the function to post the blog and await the response
+      const createdBlog = await handlePostBlogs(newBlog); // This should create the blog in the backend
+
+      // Ensure createdBlog has the expected properties
+      if (createdBlog && createdBlog._id) {
+        createBlog(createdBlog); // Add the newly created blog to the context
+      } else {
+        throw new Error("Blog creation failed: Invalid response from server");
+      }
 
       // Reset the fields after successful submission
       setTitle("");
       setDesc("");
       setImage("");
 
-      // Show the success message
     } catch (error) {
-      // Set the error message in case of failure
       setError("Error: Failed to create the post.");
       setSuccessMsg(null);
+      console.error(error); // Log error for debugging
     }
   };
 
@@ -71,27 +71,29 @@ const BlogForm = () => {
     <div className="post-inp">
       <form onSubmit={handlePost}>
         <div className="title input">
-          <label htmlFor="">
+          <label htmlFor="title">
             Title <img src={images.title} alt="title" width={20} />:
           </label>
           <input
             type="text"
+            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="image input">
-          <label htmlFor="">
+          <label htmlFor="image">
             ImageURI <img src={images.imageLogo} alt="image" width={20} />:
           </label>
           <input
             type="text"
+            id="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
         <div className="desc input">
-          <label htmlFor="">
+          <label htmlFor="desc">
             Description <img src={images.description} alt="desc" width={20} />:
           </label>
           <textarea

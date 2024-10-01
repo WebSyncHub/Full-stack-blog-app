@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import "./blogDetails.css"
+import { useBlogContext } from '../blog_logic/BlogContext'
 const BlogDetails = ({title, description, image, _id, dltBtn}) => {
-  const [dltBlog, setDltBlog] = useState([])
+  const { dltBlog } = useBlogContext()
 
   const handleDlt = async () => {
     const response = await fetch(`http://localhost:3000/api/blog-post/${_id}`, {
@@ -9,7 +10,7 @@ const BlogDetails = ({title, description, image, _id, dltBtn}) => {
     })
     const data = await response.json()
     if (response.ok) {
-      setDltBlog(data._id)
+      dltBlog(data._id)
     }
   }
   return (
