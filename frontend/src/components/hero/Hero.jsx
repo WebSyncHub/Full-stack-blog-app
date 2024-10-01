@@ -1,11 +1,11 @@
 import React from 'react';
 import './HeroSection.css';
-import { images } from "../constant"
+import { images } from '../../constant';
 
 const HeroSection = () => {
   return (
     <>
-    <div className="hero__section-top">
+    <div className="hero__section">
       <div className="hero-content">
         <h1>A 6-Step Guide to Social Media for Small Businesses</h1>
         <p className="hero-description">
@@ -22,22 +22,6 @@ const HeroSection = () => {
       
     </div>
       {/* New Sections */}
-      <div className="bottom-sections">
-        <div className="section">
-          <img src={images.frontendImg} alt="Section 1" className="section-image" />
-          <div className="section-content">
-            <h2>Section 1 Title</h2>
-            <p className="section-meta">8 min read</p>
-          </div>
-        </div>
-        <div className="section">
-          <img src={images.serverImg} alt="Section 2" className="section-image" />
-          <div className="section-content">
-            <h2>Section 2 Title</h2>
-            <p className="section-meta">10 min read</p>
-          </div>
-        </div>
-      </div>
       </>
   );
 };

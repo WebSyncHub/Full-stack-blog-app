@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { images } from '../constant'
 const Navbar = () => {
   return (
@@ -6,7 +7,9 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="nav__items">
         <header>
+          <Link to='/'>
             <img src={images.logo} alt="website logo" width={180}/>
+          </Link>
         </header>
         <ul>
             <li>Web Dev</li>
@@ -19,7 +22,7 @@ const Navbar = () => {
         </ul>
         </div>
         <div className="btns">
-            <button className="subs__btn">Dashboard</button>
+            <button className="subs__btn"><Link to="/dashboard">Dashboard</Link></button>
             <button className='theme'>light</button>
         </div>
       </nav>

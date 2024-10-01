@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FetchFromAPI } from '.';
+import { FetchFromAPI } from '..';
 
 export const handleGetBlogs = async () => {
   try {

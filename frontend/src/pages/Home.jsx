@@ -9,7 +9,6 @@ const Home = () => {
     <div className="home">
       <Hero />
       <BlogSection />
-      <Blogi dashboard={images.dashboard} />
 
       <Footer
         siteLogo={images.logo}

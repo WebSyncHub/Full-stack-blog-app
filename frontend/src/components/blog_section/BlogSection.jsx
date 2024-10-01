@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { images } from '../constant';
-import { FetchFromAPI, handleGetBlogs } from '.';
+import { images } from '../../constant';
+import { FetchFromAPI, handleGetBlogs } from '..';
 import "./blogSection.css";
 
 const BlogSection = () => {
 
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
+
+  let turncateDesc = (description, maxchars = 160) => {
+    if (!description || typeof description !== 'string') {
+      return ''; // Return an empty string if description is undefined or not a string
+    }
+  
+    if (description.length > maxchars) {
+      return description.slice(0, maxchars) + "...";
+    }
+    return description;
+  }
 
    const hangleBlogs = async () => {
         handleGetBlogs()
@@ -36,7 +47,7 @@ const BlogSection = () => {
               </div>
               <div className="card-info">
                 <h2 className="card-heading">{blog.title}</h2>
-                <p className="card-description">{blog.desc}</p>
+                <p className="card-description">{turncateDesc(blog.desc)}</p>
                 <div className="read__info">
                     <span className="publisher">by <b>Umer Khokhar</b></span>
                     <span className="post-time">13min Ago</span>
