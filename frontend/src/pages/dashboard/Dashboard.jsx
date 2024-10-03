@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './dashboard.css';
-import { images } from '../constant';
-import { handleGetBlogs, BlogForm, BlogDetails, useBlogContext } from '../components';
+import { images } from '../../constant';
+import { handleGetBlogs, BlogForm, BlogDetails, useBlogContext } from '../../components';
 
 const Dashboard = () => {
   const { blogs, setBlogs } = useBlogContext();
@@ -22,6 +22,8 @@ const Dashboard = () => {
       .then(data => setBlogs(data))
       .catch(error => console.log("Can't fetch any blogs!"));
   }, []);  // Add empty dependency array to run only once
+
+  
   
 
   return (

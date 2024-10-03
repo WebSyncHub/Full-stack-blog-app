@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { images } from '../../constant';
 import { FetchFromAPI, handleGetBlogs } from '..';
+import { useNavigate } from 'react-router-dom';
 import "./blogSection.css";
 
 const BlogSection = () => {
@@ -27,7 +28,13 @@ const BlogSection = () => {
   useEffect(() => {
     
     hangleBlogs();
-  }, []); // Added empty dependency array to run effect only once
+  }, []);
+
+  const navigate = useNavigate(); // Hook to navigate to another route
+
+  const handleCardClick = (id) => {
+    navigate(`/blog/${id}`); // Navigate to the blog details page with the blog id
+  };
 
   return (
     <div className='blog__section'>
@@ -41,7 +48,7 @@ const BlogSection = () => {
         </div>
         <div className="blog__section-cards">
         {blogs && blogs.map(blog => (
-            <div className="blog__section-card" key={blog._id}>
+            <div className="blog__section-card" key={blog._id} onClick={() => handleCardClick(blog._id)}>
               <div className="card-img">
                 <img src={blog.image} alt="dev card image" />
               </div>

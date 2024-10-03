@@ -1,8 +1,8 @@
 import React from "react";
-import { Hero, BlogSection, Blogi, Footer } from "../components";
+import { Hero, BlogSection, Blogi, Footer } from "../../components";
 import "./Home.css";
 
-import { images } from "../constant";
+import { images } from "../../constant";
 
 const Home = () => {
   return (
