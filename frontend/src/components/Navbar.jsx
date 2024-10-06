@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="nav__items">
         <header>
           <Link to='/'>
-            <img src={images.logo} alt="website logo" width={180}/>
+            <h1 className="logo">Blogi</h1>
           </Link>
         </header>
         <ul>

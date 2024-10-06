@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBlogContext } from '../../components';
+import { useBlogContext, Loader } from '../../components';
 import { handleGetBlogs } from '../../components';
+import { images } from '../../constant';
 
 import './blogdetail.css'
 
@@ -33,7 +34,7 @@ const BlogDetails = () => {
 
   // Loading state
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loader />
   }
 
   // Error state
@@ -48,10 +49,16 @@ const BlogDetails = () => {
 
   return (
     <div className="blog__details">
-      <h1>{blog.title}</h1>
+      <h2>{blog.title}</h2>
       <div className="name-time-info">
+        <div className="user">
+        <img src={images.profileImage} alt="profile image"/>
+        <div className="user-info">
         <span className="publisher">by <b>Umer Khokhar</b></span>
+        <span>Developer</span>
+        </div>
         <span className="post-time">13min Ago</span>
+        </div>
       </div>
       <img src={blog.image} alt={blog.title} />
       <p>{blog.desc}</p>

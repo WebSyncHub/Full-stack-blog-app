@@ -25,10 +25,21 @@
   align-items: center;
 }
 
+
 .nav__items {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav__items header a {
+  text-decoration: none;
+  color: rgb(0, 195, 255);
+}
+
+.nav__items header .logo {
+  font-family: var(--logo-font);
+  font-size: 2.5rem;
 }
 
 .nav__items ul {

@@ -13,6 +13,7 @@ import linkedinIcon from '../assets/social_icons/linkedin.svg'
 import instagramIcon from '../assets/social_icons/instagram.svg'
 import discordIcon from '../assets/social_icons/discord.svg'
 import dltBtn from '../assets/dlt.png'
+import profileImage from '../assets/profile.png'
 
 
 export default {
@@ -30,5 +31,6 @@ export default {
     discordIcon,
     linkedinIcon,
     instagramIcon,
-    dltBtn
+    dltBtn,
+    profileImage
 }

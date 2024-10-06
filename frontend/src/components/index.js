@@ -6,6 +6,7 @@ export { default as Footer } from './footer/Footer'
 export { default as FetchFromAPI } from './utils/FetchFromApi'
 export { default as BlogForm } from './blogForm/BlogForm'
 export { default as BlogDetails } from './blog_details/BlogDetails'
+export { default as Loader } from './loader/Loader'
 // Blog Service
 
 
