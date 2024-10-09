@@ -9,8 +9,20 @@ const BlogForm = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
+  const [tags, setTags] = useState([]);
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
+
+  const tagOptions = ['All', 'Web Dev', 'SEO', 'Content Writing', 'Design']
+
+  const handleTagChange = (tag) => {
+    if (tags.includes(tag)) {
+      setTags(tags.filter((t) => t !== tag))
+    }
+    else {
+      setTags([...tags, tag])
+    }
+  }
 
   const handlePost = async (e) => {
     e.preventDefault();
@@ -43,7 +55,7 @@ const BlogForm = () => {
     setSuccessMsg("Successfully created a new post");
 
     try {
-      const newBlog = { title, desc, image };
+      const newBlog = { title, desc, image, tags};
 
       // Call the function to post the blog and await the response
       const createdBlog = await handlePostBlogs(newBlog); // This should create the blog in the backend
@@ -103,6 +115,17 @@ const BlogForm = () => {
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
+        </div>
+        <div className="tags inupt">
+          {/* <label htmlFor="tags" className="tag-title">Tag Options:</label> */}
+          <div className="input-tag tag-options">
+            {tagOptions.map((tag) => (
+              <div className="tag-option" key={tag}>
+                <input type="checkbox"  id={tag} checked={tags.includes(tag)}  onChange={() => handleTagChange(tag)}/>
+                <label htmlFor="tags">{tag}</label>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="publish-btn">
           <button type="submit">

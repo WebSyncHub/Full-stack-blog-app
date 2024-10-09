@@ -36,3 +36,23 @@
     justify-content: center;
     gap: .5rem;
 }
+
+
+.tag-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+.tag-option {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}
+
+.tag-option input, label {
+    display: inline;
+}

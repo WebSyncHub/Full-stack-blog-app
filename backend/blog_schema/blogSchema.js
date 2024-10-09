@@ -13,6 +13,10 @@ const blogSchema = new Schema({
     image: {
         type: String,
         required: true
+    },
+    tags: {
+        type: [String],
+        required: true
     }
 })
 
