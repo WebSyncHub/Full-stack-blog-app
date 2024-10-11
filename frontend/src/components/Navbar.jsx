@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { images } from '../constant'
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className="navbar__container">

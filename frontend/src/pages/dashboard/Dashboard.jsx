@@ -30,7 +30,6 @@ const Dashboard = () => {
     <div className='dashboard'>
       <div className="post-area">
         <div className="posts">
-          {console.log(blogs)}
           {blogs && blogs.map(blog => ( // Defensive check
             <div className="my-post" key={blog._id}>
               <BlogDetails

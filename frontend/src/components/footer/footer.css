@@ -12,8 +12,10 @@
     padding: 0 20px;
   }
   
-  .footer-logo img {
-    width: 150px;
+  .footer-logo h1 {
+    font-family: var(--logo-font), sans-serif;
+    font-size: 3rem;
+    color: #008cff;
   }
   
   .footer-links {

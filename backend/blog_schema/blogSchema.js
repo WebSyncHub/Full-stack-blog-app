@@ -16,8 +16,13 @@ const blogSchema = new Schema({
     },
     tags: {
         type: [String],
-        required: true
+        required: true,
+        validate: [arrLimit, `{PATH} cannot be empty`]
     }
 })
+
+function arrLimit(val) {
+    return val.length > 0;
+}
 
 module.exports = mongoose.model("Blogs", blogSchema)

@@ -7,6 +7,8 @@ import "./blogSection.css";
 const BlogSection = () => {
 
   const [blogs, setBlogs] = useState([]);
+  const [filterBlog, setFilterBlog] = useState([]);
+  const [activeFilter, setActiveFilter] = useState("All");
   const [error, setError] = useState(null);
 
   let turncateDesc = (description, maxchars = 160) => {
@@ -19,10 +21,21 @@ const BlogSection = () => {
     }
     return description;
   }
+  const filterHandler = (item) => {
+      setFilterBlog(item);
+      if (item === "All") {
+          setFilterBlog(blogs);
+      } else {
+          setFilterBlog(blogs.filter((blog) => blog.tags.includes(item)));
+      }
+  }
 
    const hangleBlogs = async () => {
-        handleGetBlogs()
-        .then(data => setBlogs(data))
+      handleGetBlogs()
+        .then(data => {
+            setBlogs(data)
+            setFilterBlog(data)
+        })
         .catch(error => setError("Unable to fetch blogs!"))
   };
   useEffect(() => {
@@ -36,18 +49,19 @@ const BlogSection = () => {
     navigate(`/blog/${id}`); // Navigate to the blog details page with the blog id
   };
 
+  const filters = ["All", "Web Dev", "SEO", "Content Writing", 'Design']
+
   return (
     <div className='blog__section'>
         <h1>All Blogs</h1>
         <div className="blog__section-search">
-            <button>Web Dev</button>
-            <button>SEO</button>
-            <button>Content Writing</button>
-            <button>Design</button>
-            <button>All</button>
+            {filters.map((filter, index) => (
+                // eslint-disable-next-line react/jsx-key
+                <button key={filter + index} onClick={() => filterHandler(filter)}>{filter}</button>
+            ))}
         </div>
         <div className="blog__section-cards">
-        {blogs && blogs.map(blog => (
+        {filterBlog.map(blog => (
             <div className="blog__section-card" key={blog._id} onClick={() => handleCardClick(blog._id)}>
               <div className="card-img">
                 <img src={blog.image} alt="dev card image" />

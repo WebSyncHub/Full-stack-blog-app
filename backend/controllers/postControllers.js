@@ -28,7 +28,7 @@ const createBlog = async (req, res) => {
   const { title, desc, image, tags } = req.body;
   
   try {
-     const blog = await Blogs.create({ title, desc, image, tags: tags || [] });
+     const blog = await Blogs.create({ title, desc, image, tags: tags });
      res.status(200).json(blog);
   } catch (error) {
      console.error(error);
@@ -40,7 +40,7 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const { title, desc, image, tags } = req.body;
-    const blog =  await Blogs.findByIdAndUpdate(req.params.id, {title, desc, image, tags: tags || []}, { new: true })
+    const blog =  await Blogs.findByIdAndUpdate(req.params.id, {title, desc, image, tags: tags}, { new: true })
     if (!blog) {
      return res.status(404).json({error: 'Blog not found'})
     }
