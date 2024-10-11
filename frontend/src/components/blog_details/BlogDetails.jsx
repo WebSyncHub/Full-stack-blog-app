@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./blogDetails.css"
 import { useBlogContext } from '../blog_logic/BlogContext'
+// eslint-disable-next-line react/prop-types
 const BlogDetails = ({title, description, image, _id, dltBtn}) => {
   const { dltBlog } = useBlogContext()
 

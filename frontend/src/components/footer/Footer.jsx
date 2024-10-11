@@ -1,12 +1,13 @@
 import React from "react";
 import "./footer.css"; // Ensure you have this CSS file
 
-const Footer = ({ siteLogo, githubIcon, linkedinIcon, instagramIcon, discordIcon }) => {
+// eslint-disable-next-line react/prop-types
+const Footer = ({ githubIcon, linkedinIcon, instagramIcon, discordIcon }) => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <img src={siteLogo} alt="website logo" />
+          <h1>Blogi</h1>
         </div>
         <div className="footer-links">
           <div className="footer-column">

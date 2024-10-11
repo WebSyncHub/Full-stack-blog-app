@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { images } from '../constant'
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className="navbar__container">
@@ -8,7 +7,7 @@ const Navbar = () => {
         <div className="nav__items">
         <header>
           <Link to='/'>
-            <img src={images.logo} alt="website logo" width={180}/>
+            <h1 className="logo">Blogi</h1>
           </Link>
         </header>
         <ul>
